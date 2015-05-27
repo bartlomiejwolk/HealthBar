@@ -39,7 +39,7 @@ namespace HealthbarEx {
         // Offset transform pivot point.
         //
         // Use it if health bar position floats away from the transform.
-        public Vector3 _targetOffset = new Vector3(0, 2.2f, 0);
+        public Vector3 targetOffset = new Vector3(0, 2.2f, 0);
 
         // the camera used to track health bar size
         public Transform cameraTracker;
@@ -59,14 +59,14 @@ namespace HealthbarEx {
 
         private float currentValue = 100;
         private float previousValue = 100;
-        private Coroutine c_displayHealthBar;
+        private Coroutine displayHealthBar;
         void HealthBarController (){
             // if there was a change in health, display the health bar
             if (previousValue != health){
-                if (c_displayHealthBar != null) {
+                if (displayHealthBar != null) {
                     StopAllCoroutines();
                 }
-                c_displayHealthBar = StartCoroutine(DisplayHealthBar(health));
+                displayHealthBar = StartCoroutine(DisplayHealthBar(health));
             }
             previousValue = health;
         }
@@ -79,11 +79,11 @@ namespace HealthbarEx {
             /*if (healthBarGUI.texture looks shitty){
                 Debug.Log("ERROR: Your fucking health bar texture is disgusting, go fuck yourself");
             }*/
-            if (c_displayHealthBar != null){
+            if (displayHealthBar != null){
                 Vector2 barPos = 
                     Camera.main.WorldToScreenPoint(
                             transform.position +
-                            _targetOffset);
+                            targetOffset);
                 DrawHealthBar(barPos + healthBarGUI.offset);
             }
         }
@@ -101,7 +101,7 @@ namespace HealthbarEx {
                 timer += Time.deltaTime;
                 yield return null;
             }
-            c_displayHealthBar = null;
+            displayHealthBar = null;
         }
         
         private void DrawHealthBar (Vector2 barPos) {
