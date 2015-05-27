@@ -5,12 +5,32 @@ namespace HealthbarEx {
 
     public class HealthBar : MonoBehaviour {
 
+        #region CONSTANTS
+
+        public const string Version = "v0.1.0";
+        public const string Extension = "Healthbar";
+
+        #endregion
+        
         #region FIELDS
         private Coroutine displayHealthBar;
         private float previousValue = 100;
         private float currentValue = 100;
         private float health = 100;
         private float maxHealth = 100;
+
+        /// <summary>
+        /// Allows identify component in the scene file when reading it with
+        /// text editor.
+        /// </summary>
+#pragma warning disable 0414
+        [SerializeField]
+        private string componentName = "MyClass";
+#pragma warning restore0414
+
+        [SerializeField]
+        private string description = "Description";
+  
         #endregion
 
         #region INSPECTOR FIELDS
@@ -51,6 +71,11 @@ namespace HealthbarEx {
         public float RefRelativeDist {
             get { return refRelativeDist; }
             set { refRelativeDist = value; }
+        }
+
+        public string Description {
+            get { return description; }
+            set { description = value; }
         }
 
         #endregion
