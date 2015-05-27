@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-namespace OneDayGame {
+namespace HealthbarEx {
 
-	public class HealthBar : GameComponent {
+	public class HealthBar : MonoBehaviour {
 
 		[System.Serializable]
 		public class HealthBarGUI {
@@ -32,7 +32,7 @@ namespace OneDayGame {
 			public PositionModes positionMode;
 		}
 
-		public Life healthSource;
+		public float healthValue;
 		public HealthBarGUI healthBarGUI;
 		private float health = 100;
 		private float maxHealth = 100;
@@ -45,41 +45,16 @@ namespace OneDayGame {
 		public Transform cameraTracker;
 		public float refRelativeDist = 5;
 
-		public override void Start () {
-			base.Start();
-			if (!healthSource){
-				Debug.Log("ERROR: Missing [Life] component reference.");
-				return;
-			}
-			health = healthSource.HealthValue;
+		private void Start () {
+            // todo remove health field
+			health = healthValue;
 			currentValue = health;
 			maxHealth = health;
 		}
 
-		public override void Update () {
-			base.Update();
-			/*if (!healthSource){
-				Debug.Log("ERROR: Missing [Life] component reference.");
-				return;
-			}*/
-			health = healthSource.HealthValue;
+		private void Update () {
+			health = healthValue;
 			HealthBarController();
-		}
-
-		public override void Awake() {
-			base.Awake();
-		}
-
-		public override void LateUpdate() {
-			base.LateUpdate();
-		}
-
-		public override void FixedUpdate() {
-			base.FixedUpdate();
-		}
-
-		public override void OnEnable() {
-			base.OnEnable();
 		}
 
 		private float currentValue = 100;
