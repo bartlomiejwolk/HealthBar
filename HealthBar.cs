@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace HealthbarEx {
+namespace HealthBarEx {
 
     public class HealthBar : MonoBehaviour {
 

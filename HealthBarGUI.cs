@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace HealthbarEx {
+namespace HealthBarEx {
 
     [System.Serializable]
     public class HealthBarGUI {
