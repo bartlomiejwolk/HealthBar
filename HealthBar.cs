@@ -19,7 +19,7 @@ namespace HealthBarEx {
         #endregion
         
         #region FIELDS
-        public float healthValue;
+        private float healthValue;
         private Coroutine displayHealthBar;
         private float previousValue = 100;
         private float currentValue = 100;
@@ -42,15 +42,15 @@ namespace HealthBarEx {
 
         #region INSPECTOR FIELDS
         // todo make all private
-        public HealthBarGUI healthBarGUI;
+        private HealthBarGUI healthBarGUI;
         // Offset transform pivot point.
         //
         // Use it if health bar position floats away from the transform.
-        public Vector3 targetOffset = new Vector3(0, 2.2f, 0);
+        private Vector3 targetOffset = new Vector3(0, 2.2f, 0);
 
         // the camera used to track health bar size
-        public Transform cameraTracker;
-        public float refRelativeDist = 5;
+        private Transform cameraTracker;
+        private float refRelativeDist = 5;
         #endregion
 
         #region PROPERTIES
