@@ -1,15 +1,15 @@
 ﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
-//  
-// This file is part of the HealthBar extension for Unity.
-// Licensed under the MIT license. See LICENSE file in the project root folder.
-// Based on HealthBar component made by Zero3Growlithe.
+// 
+// This file is part of the HealthBar extension for Unity. Licensed under the
+// MIT license. See LICENSE file in the project root folder. Based on HealthBar
+// component made by Zero3Growlithe.
 
 using UnityEditor;
 using UnityEngine;
 
 namespace HealthBarEx {
 
-    [CustomEditor(typeof(HealthBar))]
+    [CustomEditor(typeof (HealthBar))]
     [CanEditMultipleObjects]
     public sealed class HealthBarEditor : Editor {
         #region FIELDS
@@ -20,11 +20,11 @@ namespace HealthBarEx {
 
         #region SERIALIZED PROPERTIES
 
+        private SerializedProperty cameraTracker;
         private SerializedProperty description;
         private SerializedProperty healthBarGUI;
-        private SerializedProperty targetOffset;
-        private SerializedProperty cameraTracker;
         private SerializedProperty refRelativeDist;
+        private SerializedProperty targetOffset;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -45,8 +45,9 @@ namespace HealthBarEx {
 
             serializedObject.ApplyModifiedProperties();
         }
+
         private void OnEnable() {
-            Script = (HealthBar)target;
+            Script = (HealthBar) target;
 
             healthBarGUI = serializedObject.FindProperty("healthBarGUI");
             targetOffset = serializedObject.FindProperty("targetOffset");
@@ -59,13 +60,6 @@ namespace HealthBarEx {
         #endregion UNITY MESSAGES
 
         #region INSPECTOR CONTROLS
-        private void DrawRelativeDistanceField() {
-            EditorGUILayout.PropertyField(
-                refRelativeDist,
-                new GUIContent(
-                    "Relative Distance",
-                    ""));
-        }
 
         private void DrawCameraField() {
             EditorGUILayout.PropertyField(
@@ -73,6 +67,28 @@ namespace HealthBarEx {
                 new GUIContent(
                     "Camera",
                     "Camera used to calculate health bar size."));
+        }
+
+        private void DrawDescriptionTextArea() {
+            description.stringValue = EditorGUILayout.TextArea(
+                description.stringValue);
+        }
+
+        private void DrawHealthBarGUI() {
+            EditorGUILayout.PropertyField(
+                healthBarGUI,
+                new GUIContent(
+                    "Health Bar GUI",
+                    ""),
+                true);
+        }
+
+        private void DrawRelativeDistanceField() {
+            EditorGUILayout.PropertyField(
+                refRelativeDist,
+                new GUIContent(
+                    "Relative Distance",
+                    ""));
         }
 
         private void DrawTargetOffsetField() {
@@ -83,16 +99,6 @@ namespace HealthBarEx {
                     ""));
         }
 
-        private void DrawHealthBarGUI() {
-            EditorGUILayout.PropertyField(
-                healthBarGUI,
-                new GUIContent(
-                    "Health Bar GUI",
-                    ""),
-                    true);
-        }
-
-
         private void DrawVersionLabel() {
             EditorGUILayout.LabelField(
                 string.Format(
@@ -101,19 +107,14 @@ namespace HealthBarEx {
                     HealthBar.Extension));
         }
 
-        private void DrawDescriptionTextArea() {
-            description.stringValue = EditorGUILayout.TextArea(
-                description.stringValue);
-        }
-
-        #endregion INSPECTOR
+        #endregion INSPECTOR CONTROLS
 
         #region METHODS
 
         [MenuItem("Component/HealthBar")]
         private static void AddEntryToComponentMenu() {
             if (Selection.activeGameObject != null) {
-                Selection.activeGameObject.AddComponent(typeof(HealthBar));
+                Selection.activeGameObject.AddComponent(typeof (HealthBar));
             }
         }
 
