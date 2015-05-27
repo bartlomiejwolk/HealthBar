@@ -51,7 +51,7 @@ namespace HealthBarEx {
         private HealthBarGUI healthBarGUI;
 
         [SerializeField]
-        private float refRelativeDist = 5;
+        private float refRelativeDist = 8;
 
         // Offset transform pivot point.
         // 
