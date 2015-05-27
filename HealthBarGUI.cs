@@ -12,26 +12,25 @@ namespace HealthBarEx {
     // todo encapsulate fields
     public class HealthBarGUI {
 
-        public Color addedHealth;
-
         [HideInInspector]
         public float alpha;
 
-        public float animationSpeed = 3f;
+        public bool displayValue = true;
+        public PositionModes positionMode;
+        public Texture texture;
+        public Color addedHealth;
         public Color availableHealth;
         public Color displayedValue;
-        public bool displayValue = true;
         public Color drainedHealth;
-        public int height = 30;
-        public Vector2 offset = new Vector2(0, 30);
-        public PositionModes positionMode;
-        public GUIStyle textStyle;
-        public Texture texture;
-        public float transitionDelay = 3f;
+        public float animationSpeed = 3f;
         public float transitionSpeed = 5f;
-        public Vector2 valueOffset = new Vector2(0, 30);
+        public float transitionDelay = 3f;
         public float visibility = 1;
         public int width = 100;
+        public int height = 30;
+        public Vector2 offset = new Vector2(0, 30);
+        public Vector2 valueOffset = new Vector2(0, 30);
+        public GUIStyle textStyle;
 
         public enum PositionModes {
 
