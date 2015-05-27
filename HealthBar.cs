@@ -5,10 +5,17 @@ namespace HealthbarEx {
 
     public class HealthBar : MonoBehaviour {
 
-        public float healthValue;
-        public HealthBarGUI healthBarGUI;
+        #region FIELDS
+        private Coroutine displayHealthBar;
+        private float previousValue = 100;
+        private float currentValue = 100;
         private float health = 100;
         private float maxHealth = 100;
+        #endregion
+
+        #region INSPECTOR FIELDS
+        public float healthValue;
+        public HealthBarGUI healthBarGUI;
         // Offset transform pivot point.
         //
         // Use it if health bar position floats away from the transform.
@@ -17,6 +24,27 @@ namespace HealthbarEx {
         // the camera used to track health bar size
         public Transform cameraTracker;
         public float refRelativeDist = 5;
+
+        #endregion
+
+        #region UNITY MESSAGES
+        void OnGUI() {
+            if (!healthBarGUI.texture) {
+                Debug.Log("ERROR: Health bar texture has not been assigned!");
+                return;
+            }
+            /*if (healthBarGUI.texture looks shitty){
+                Debug.Log("ERROR: Your fucking health bar texture is disgusting, go fuck yourself");
+            }*/
+            if (displayHealthBar != null) {
+                Vector2 barPos =
+                    Camera.main.WorldToScreenPoint(
+                            transform.position +
+                            targetOffset);
+                DrawHealthBar(barPos + healthBarGUI.offset);
+            }
+        }
+
 
         private void Start () {
             // todo remove health field
@@ -30,9 +58,8 @@ namespace HealthbarEx {
             HealthBarController();
         }
 
-        private float currentValue = 100;
-        private float previousValue = 100;
-        private Coroutine displayHealthBar;
+        #endregion
+        #region METHODS
         void HealthBarController (){
             // if there was a change in health, display the health bar
             if (previousValue != health){
@@ -43,24 +70,6 @@ namespace HealthbarEx {
             }
             previousValue = health;
         }
-
-        void OnGUI (){
-            if (!healthBarGUI.texture){
-                Debug.Log("ERROR: Health bar texture has not been assigned!");
-                return;
-            }
-            /*if (healthBarGUI.texture looks shitty){
-                Debug.Log("ERROR: Your fucking health bar texture is disgusting, go fuck yourself");
-            }*/
-            if (displayHealthBar != null){
-                Vector2 barPos = 
-                    Camera.main.WorldToScreenPoint(
-                            transform.position +
-                            targetOffset);
-                DrawHealthBar(barPos + healthBarGUI.offset);
-            }
-        }
-
         IEnumerator DisplayHealthBar (float target){
             float timer = 0f;
             healthBarGUI.alpha = healthBarGUI.visibility;
@@ -177,6 +186,7 @@ namespace HealthbarEx {
         private float Cut (float input, float min, float max){
             return Mathf.Clamp(input, min, max);
         }
+        #endregion
     }
 
 }
