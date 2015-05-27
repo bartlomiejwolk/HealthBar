@@ -284,6 +284,14 @@ namespace HealthBarEx {
             previousValue = Health;
         }
 
+        /// <summary>
+        /// Sets health value.
+        /// </summary>
+        /// <param name="newValue"></param>
+        public void AssignHealthValue(int newValue) {
+            Health = newValue;
+        }
+
         #endregion METHODS
     }
 
