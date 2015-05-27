@@ -2,7 +2,7 @@
 // 
 // This file is part of the HealthBar extension for Unity. Licensed under the
 // MIT license. See LICENSE file in the project root folder. Based on HealthBar
-// component made by Zero3Growlithe.
+// component made by Zero3Growlithe (zero3growlithe@gmail.com).
 
 using System.Collections;
 using UnityEngine;
