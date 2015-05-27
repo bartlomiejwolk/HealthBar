@@ -44,5 +44,4 @@ Example: `v0.2.3f1`
 
 ## Thanks
 
-* Big thanks to [Zero3Growlithe](https://zero3growlithe.wordpress.com/portfolio/)   
-  for making the original HealthBar component.
+* Big thanks to [Zero3Growlithe](https://zero3growlithe.wordpress.com/portfolio/) for making the original HealthBar component.
