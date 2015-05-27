@@ -45,16 +45,20 @@ namespace HealthBarEx {
         #region INSPECTOR FIELDS
 
         // the camera used to track health bar size
+        [SerializeField]
         private Transform cameraTracker;
 
         // todo make all private
+        [SerializeField]
         private HealthBarGUI healthBarGUI;
 
+        [SerializeField]
         private float refRelativeDist = 5;
 
         // Offset transform pivot point.
         // 
         // Use it if health bar position floats away from the transform.
+        [SerializeField]
         private Vector3 targetOffset = new Vector3(0, 2.2f, 0);
 
         #endregion INSPECTOR FIELDS
