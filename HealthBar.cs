@@ -34,7 +34,7 @@ namespace HealthBarEx {
         private string description = "Description";
 
         private Coroutine displayHealthBar;
-        private float health = 100;
+        private int health = 100;
         private float maxHealth = 100;
         private float previousValue = 100;
 
@@ -88,7 +88,7 @@ namespace HealthBarEx {
             set { targetOffset = value; }
         }
 
-        public float Health {
+        public int Health {
             get { return health; }
             set { health = value; }
         }
