@@ -13,6 +13,7 @@ namespace HealthBarEx {
         #endregion
         
         #region FIELDS
+        public float healthValue;
         private Coroutine displayHealthBar;
         private float previousValue = 100;
         private float currentValue = 100;
@@ -34,7 +35,7 @@ namespace HealthBarEx {
         #endregion
 
         #region INSPECTOR FIELDS
-        public float healthValue;
+        // todo make all private
         public HealthBarGUI healthBarGUI;
         // Offset transform pivot point.
         //
