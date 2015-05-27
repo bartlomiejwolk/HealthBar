@@ -35,7 +35,6 @@ namespace HealthBarEx {
 
         private Coroutine displayHealthBar;
         private float health = 100;
-        private float healthValue;
         private float maxHealth = 100;
         private float previousValue = 100;
 
@@ -79,11 +78,6 @@ namespace HealthBarEx {
             set { healthBarGUI = value; }
         }
 
-        public float HealthValue {
-            get { return healthValue; }
-            set { healthValue = value; }
-        }
-
         public float RefRelativeDist {
             get { return refRelativeDist; }
             set { refRelativeDist = value; }
@@ -92,6 +86,11 @@ namespace HealthBarEx {
         public Vector3 TargetOffset {
             get { return targetOffset; }
             set { targetOffset = value; }
+        }
+
+        public float Health {
+            get { return health; }
+            set { health = value; }
         }
 
         #endregion PROPERTIES
@@ -116,14 +115,11 @@ namespace HealthBarEx {
         }
 
         private void Start() {
-            // todo remove health field
-            health = HealthValue;
-            currentValue = health;
-            maxHealth = health;
+            currentValue = Health;
+            maxHealth = Health;
         }
 
         private void Update() {
-            health = HealthValue;
             HealthBarController();
         }
 
@@ -165,12 +161,12 @@ namespace HealthBarEx {
             // Holds health bar lerped value.
             currentValue = Mathf.Lerp(
                 currentValue,
-                Cut(health, 0, Mathf.Infinity),
+                Cut(Health, 0, Mathf.Infinity),
                 Time.deltaTime * HealthBarGui.animationSpeed);
             // Destination.
             var barWidth =
                 (HealthBarGui.width * GUIScale)
-                * (Cut(health, 0, Mathf.Infinity) / maxHealth);
+                * (Cut(Health, 0, Mathf.Infinity) / maxHealth);
             // Learped value.
             var lerpBarWidth =
                 (HealthBarGui.width * GUIScale) * (currentValue / maxHealth);
@@ -279,13 +275,13 @@ namespace HealthBarEx {
         private void HealthBarController() {
             // if there was a change in health, display the health bar todo
             // compare with FloatsEqual()
-            if (previousValue != health) {
+            if (previousValue != Health) {
                 if (displayHealthBar != null) {
                     StopAllCoroutines();
                 }
-                displayHealthBar = StartCoroutine(DisplayHealthBar(health));
+                displayHealthBar = StartCoroutine(DisplayHealthBar(Health));
             }
-            previousValue = health;
+            previousValue = Health;
         }
 
         #endregion METHODS
