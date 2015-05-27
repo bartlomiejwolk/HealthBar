@@ -1,3 +1,9 @@
+// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
+//  
+// This file is part of the HealthBar extension for Unity.
+// Licensed under the MIT license. See LICENSE file in the project root folder.
+// Based on HealthBar component made by Zero3Growlithe.
+
 using UnityEngine;
 using System.Collections;
 
@@ -26,7 +32,7 @@ namespace HealthBarEx {
         /// </summary>
 #pragma warning disable 0414
         [SerializeField]
-        private string componentName = "MyClass";
+        private string componentName = "HealthBar";
 #pragma warning restore0414
 
         [SerializeField]
@@ -116,6 +122,7 @@ namespace HealthBarEx {
         #region METHODS
         void HealthBarController (){
             // if there was a change in health, display the health bar
+            // todo compare with FloatsEqual()
             if (previousValue != health){
                 if (displayHealthBar != null) {
                     StopAllCoroutines();
@@ -142,7 +149,7 @@ namespace HealthBarEx {
         
         private void DrawHealthBar (Vector2 barPos) {
         // scale the gui if camera is available
-            float GUIScale = 0;
+            float GUIScale;
             if (CameraTracker != null){
                 float cameraDist = (CameraTracker.position-transform.position).magnitude;
                 GUIScale = RefRelativeDist/Cut(cameraDist, 0.001f, Mathf.Infinity);

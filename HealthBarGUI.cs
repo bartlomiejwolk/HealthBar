@@ -1,3 +1,9 @@
+// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
+//  
+// This file is part of the HealthBar extension for Unity.
+// Licensed under the MIT license. See LICENSE file in the project root folder.
+// Based on HealthBar component made by Zero3Growlithe.
+
 using UnityEngine;
 
 namespace HealthBarEx {
