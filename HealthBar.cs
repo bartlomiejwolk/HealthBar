@@ -19,8 +19,14 @@ namespace HealthBarEx {
 
         #region FIELDS
 
+#pragma warning disable 0414
+        /// <summary>
+        ///     Allows identify component in the scene file when reading it with
+        ///     text editor.
+        /// </summary>
         [SerializeField]
         private string componentName = "HealthBar";
+#pragma warning restore0414
 
         private float currentValue = 100;
 
@@ -32,13 +38,6 @@ namespace HealthBarEx {
         private float healthValue;
         private float maxHealth = 100;
         private float previousValue = 100;
-
-        /// <summary>
-        ///     Allows identify component in the scene file when reading it with
-        ///     text editor.
-        /// </summary>
-#pragma warning disable 0414
-#pragma warning restore0414
 
         #endregion FIELDS
 
