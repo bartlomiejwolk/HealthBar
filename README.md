@@ -21,7 +21,9 @@ Extensions with version below 1.0.0 are considered to be pre/alpha and may not w
 1. Clone or download (with the *Download* button) the repository into the *Assets* folder.
 2. Select game object in the hierarchy window and from the *Component* menu
    select *HealthBar* to add component to the selected game object.
-3. ...
+3. Set reference to the main camera and add texture (can be all white).
+4. Health bar will be visible only when health value changes. You can update health value by
+   changing the `Health` property or by calling the `AssignHealthValue(int)` method.
 
 ## Help
 
