@@ -25,6 +25,7 @@ namespace HealthBarEx {
         private SerializedProperty healthBarGUI;
         private SerializedProperty refRelativeDist;
         private SerializedProperty targetOffset;
+        private SerializedProperty forceDisplay;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -41,9 +42,19 @@ namespace HealthBarEx {
             DrawCameraField();
             DrawRelativeDistanceField();
             DrawTargetOffsetField();
+            ForceDisplayToggle();
             DrawHealthBarGUI();
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void ForceDisplayToggle() {
+            EditorGUILayout.PropertyField(
+                forceDisplay,
+                new GUIContent(
+                    "Force Display",
+                    "Health bar will be visible all the time. Use for " +
+                    "debug purposes."));
         }
 
         private void OnEnable() {
@@ -53,6 +64,7 @@ namespace HealthBarEx {
             targetOffset = serializedObject.FindProperty("targetOffset");
             cameraTracker = serializedObject.FindProperty("cameraTracker");
             refRelativeDist = serializedObject.FindProperty("refRelativeDist");
+            forceDisplay = serializedObject.FindProperty("forceDisplay");
 
             description = serializedObject.FindProperty("description");
         }

@@ -59,6 +59,12 @@ namespace HealthBarEx {
         [SerializeField]
         private Vector3 targetOffset = new Vector3(0, 2.2f, 0);
 
+        /// <summary>
+        /// Force health bar to be visible all the time.
+        /// </summary>
+        [SerializeField]
+        private bool forceDisplay;
+
         #endregion INSPECTOR FIELDS
 
         #region PROPERTIES
@@ -93,6 +99,11 @@ namespace HealthBarEx {
             set { health = value; }
         }
 
+        public bool ForceDisplay {
+            get { return forceDisplay; }
+            set { forceDisplay = value; }
+        }
+
         #endregion PROPERTIES
 
         #region UNITY MESSAGES
@@ -102,15 +113,23 @@ namespace HealthBarEx {
                 Debug.Log("ERROR: Health bar texture has not been assigned!");
                 return;
             }
+
             /*if (healthBarGUI.texture looks shitty){
                 Debug.Log("ERROR: Your fucking health bar texture is disgusting, go fuck yourself");
             }*/
+
+            // Return if health bar should not be drawn.
+            if (displayHealthBar == null
+                && !ForceDisplay) return;
+
+            // Health bar coroutine is running - draw health bar.
             if (displayHealthBar != null) {
-                Vector2 barPos =
-                    Camera.main.WorldToScreenPoint(
-                        transform.position +
-                        TargetOffset);
-                DrawHealthBar(barPos + HealthBarGui.offset);
+                DrawHealthBar();
+            }
+            else {
+                // Health bar coroutine is not running but force display option
+                // is checked - start the coroutine.
+                displayHealthBar = StartCoroutine(DisplayHealthBar(Health));
             }
         }
 
@@ -147,7 +166,14 @@ namespace HealthBarEx {
             displayHealthBar = null;
         }
 
-        private void DrawHealthBar(Vector2 barPos) {
+        private void DrawHealthBar() {
+            Vector2 barPos =
+                Camera.main.WorldToScreenPoint(
+                    transform.position +
+                    TargetOffset);
+
+            barPos += HealthBarGui.offset;
+
             // scale the gui if camera is available
             float GUIScale;
             if (CameraTracker != null) {
