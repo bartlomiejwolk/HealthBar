@@ -31,7 +31,9 @@ namespace HealthBarEx {
         public float visibility = 1;
         public int width = 120;
         public int height = 16;
+        // todo break rename to healthbarOffset
         public Vector2 offset = new Vector2(0, 0);
+        // todo break rename to textOffset 
         public Vector2 valueOffset = new Vector2(0, -46);
         public GUIStyle textStyle;
 
